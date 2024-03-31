@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <cjson/cJSON.h>
 
 //получение значения температуры 
 float get_cpu_temperature(){
@@ -42,6 +43,19 @@ int get_memory_info(char *memory_info, int size){
     return 1;
 }
 
+char * serializ_to_JSON(float temperature, const char* kernel_version, const char * memory_info){
+    cJSON *root = cJSON_CreateObject();
+    cJSON_AddNumberToObject(root, "temperature", temperature);
+    cJSON_AddStringToObject(root, "kernel_version", kernel_version);
+    cJSON_AddStringToObject(root, "memory_info", memory_info);
+
+    char * serialized = cJSON_Print(root);
+    cJSON_Delete(root);
+
+    return serialized;
+
+}
+
 int main(int argc, char** argv) {
     char kernel_version[128];
     char memory_info[128];
@@ -54,8 +68,9 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    printf("Kernel version: %s \n", kernel_version);
-    printf("CPU temperature: %1f^C\n", temperature);
-    printf("Available memory: %s\n", memory_info);
+    char * json_str = serializ_to_JSON(temperature, kernel_version, memory_info);
+    printf("Serialized JSON: %s\n", json_str);
+    free(json_str);
+
     return 0;
 }
