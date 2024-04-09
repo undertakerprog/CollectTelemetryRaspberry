@@ -6,7 +6,7 @@
 CUR_DIR := $(shell basename $(CURDIR))
 CC := gcc
 CFLAGS := -W -Wall -Wno-unused-parameter -Wno-unused-variable -Werror -std=c11 -pedantic -lc -D_POSIX_C_SOURCE=200809L -I/usr/include/cjson
-LDFLAGS := -L/usr/lib/x86_64-linux-gnu -lcjson
+LDFLAGS := -L/usr/lib/x86_64-linux-gnu -lcjson -lwiringPi
 EXFILE := main
 SSH_SERVER := undertaken@172.20.10.2
 SERVER_PATH := ~/$(CUR_DIR)
