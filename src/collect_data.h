@@ -9,9 +9,6 @@
 #define DHTPIN 7
 #define SOUND_PIN 17
 
-//check
-bool check_sensor_connection(int pin);
-
 //sencors 
 int read_sound_sensor();
 
