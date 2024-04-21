@@ -7,7 +7,7 @@ def read_data(filename):
     data = []
     with open(filename, 'r') as file:
         for line in file:
-            data.append(json.loads(line))  # Предполагается, что каждая строка содержит JSON
+            data.append(json.loads(line)) 
     return data
 
 # Функция для обновления данных графиков
@@ -33,7 +33,7 @@ def update_plot(frame):
     ax3.set_ylabel('Sound')
 
 # Создание начальных графиков
-filename = '/home/undertaken/C++/project/sensor_data.json'  # Замените на путь к вашему файлу JSON
+filename = '/home/undertaken/C++/project/sensor_data.json'
 data = read_data(filename)
 
 fig, (ax1, ax2, ax3) = plt.subplots(3, 1, figsize=(10, 6))
