@@ -4,11 +4,11 @@ void send_file_to_computer() {
     const char* username = "undertaken";
     const char* hostname = "172.20.10.3";
     const char* local_file_path = "/home/undertaker/project/build/debug/sensor_data.json";
-    const char* remote_directory_path = "/home/undertaken/C++/project/";
-    const char* password = "9234";
+    const char* remote_directory_path = "/home/undertaken/C++/project";
 
+    // Используйте scp с указанием приватного ключа SSH
     char command[256];
-    snprintf(command, sizeof(command), "sshpass -p '%s' scp %s %s@%s:%s", password, local_file_path, username, hostname, remote_directory_path);
+    snprintf(command, sizeof(command), "scp -i ~/.ssh/remote_rsa %s %s@%s:%s", local_file_path, username, hostname, remote_directory_path);
 
     int status = system(command);
 
